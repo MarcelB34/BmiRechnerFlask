@@ -1,0 +1,17 @@
+# Datenbanken (Deine privaten Werte)
+*.db
+bmi.db
+
+# Python-Umgebung
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# PyCharm-Einstellungen
+.idea/
+
+# Betriebssystem-Reste
+.DS_Store
+Thumbs.db

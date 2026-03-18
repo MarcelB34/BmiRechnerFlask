@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI RECHNER</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<form method="POST">
+    <h2 class="form-title">BMI RECHNER APP</h2>
+
+    <input type="number" name="gewicht" step="0.1" placeholder="Körpergewicht in Kg" required>
+    <input type="number" name="groesse" placeholder="Körpergröße in cm" required>
+
+    <button type="submit">Berechnen</button> <br> <br>
+
+    {% if ergebnis %}
+        <output>Der BMI beträgt: {{ ergebnis }}</output>
+    {% endif %}
+
+    {% if nachricht %}
+        <div class="{{ klasse }}">
+            {{ nachricht }}
+        </div>
+    {% endif %}
+
+    {% if fehler %}
+        <div class="fehler">{{ fehler }}</div>
+    {% endif %} <br>
+
+
+<button class="btn-delete" id="delete-btn" type="submit">History Löschen</button>
+
+    <details class="history-container">
+        <summary>DEINE HISTORIE ANZEIGEN</summary>
+        <div id="history-list" class="history-list">
+            </div>
+    </details>
+<br>
+    <div class="branding">
+        Marcel Bialas<br>
+        <span>Kaiserlabs-ai.de 2026</span>
+    </div>
+</form>
+
+<script>
+    // 1. Funktion: Historie aus dem Browser-Speicher laden und anzeigen
+    function renderHistory() {
+        const container = document.getElementById('history-list');
+        const data = JSON.parse(localStorage.getItem('bmi_demo_history')) || [];
+
+        if (data.length === 0) {
+            container.innerHTML = '<div style="color: #666; font-size: 0.8rem; padding: 10px;">Noch keine Messungen vorhanden.</div>';
+            return;
+        }
+
+        container.innerHTML = data.map(item => `
+            <div class="history-item">
+                <span>${item.date}</span>
+                <strong>BMI: ${item.bmi}</strong>
+                <span>(${item.weight} kg)</span>
+            </div>
+        `).join('');
+    }
+
+    // 2. Logik: Wenn der Server ein neues Ergebnis schickt, lokal speichern
+    {% if ergebnis %}
+        const newEntry = {
+            bmi: "{{ ergebnis }}",
+            weight: "{{ gewicht_fuer_js }}",
+            date: new Date().toLocaleDateString('de-DE')
+        };
+
+        let history = JSON.parse(localStorage.getItem('bmi_demo_history')) || [];
+        // Neuen Wert oben einfügen
+        history.unshift(newEntry);
+        // Liste auf 5 Einträge begrenzen
+        if (history.length > 5) history.pop();
+
+        localStorage.setItem('bmi_demo_history', JSON.stringify(history));
+    {% endif %}
+
+    // Beim Laden der Seite die Liste aufbauen
+    renderHistory();
+    // 1. Den Button im HTML finden
+    const loeschButton = document.getElementById('delete-btn');
+
+    // 2. Sagen, was beim Klicken passieren soll
+    loeschButton.addEventListener('click', function() {
+
+    // Bestätigung abfragen (optional, aber sicher ist sicher)
+    if (confirm("Möchtest du wirklich alle gespeicherten Messungen löschen?")) {
+
+        // Den Speicher im Browser leeren
+        localStorage.removeItem('bmi_demo_history');
+
+        // Die Anzeige sofort aktualisieren (damit die Liste verschwindet)
+        renderHistory();
+    }
+});
+</script>
+
+</body>
+</html>

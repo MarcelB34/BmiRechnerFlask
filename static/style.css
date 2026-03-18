@@ -1,0 +1,148 @@
+/* Alles im Body zentrieren und Schriftart festlegen */
+/* Für Chrome, Safari, Edge und Opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Für Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Styling für die Eingabefelder */
+input[type="number"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #444;
+    border-radius: 8px;
+    background-color: #333;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box; /* Wichtig, damit Padding die Breite nicht sprengt */
+    transition: border-color 0.3s;
+}
+
+/* Effekt, wenn man in ein Feld klickt */
+input[type="number"]:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Styling für den Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 10px;
+}
+
+/* Button-Effekt beim Drüberfahren */
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Button-Effekt beim Klicken */
+button:active {
+    transform: scale(0.98);
+}
+
+.btn-delete{
+    width: 30%;
+    padding: 5px;
+    font-size: 0.8rem;
+    margin-top: 40px;
+    margin-bottom: 3px;
+}
+.history-container {
+    margin-top: 10px;
+    text-align: left;
+    background: #333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+summary {
+    padding: 10px;
+    cursor: pointer;
+    color: #3498db;
+    font-weight: bold;
+    font-size: 0.8rem;
+    list-style: none; /* Entfernt den Standard-Pfeil in manchen Browsern */
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+summary:hover {
+    background: #3d3d3d;
+}
+
+.history-list {
+    padding: 10px;
+    max-height: 200px; /* Falls es mal viele Einträge werden */
+    overflow-y: auto;
+}
+
+
+/* Den Container für das Formular schick machen */
+form {
+    width: 90%;          /* Nimmt auf kleinen Schirmen 90% der Breite ein */
+    max-width: 400px;    /* Wird aber nie breiter als 400px */
+    background-color: #2d2d2d;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+}
+.fehler {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.optimal {
+    color: #2ecc71; /* Kräftiges Grün */
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.warnung {
+    color: #f1c40f; /* Warn-Gelb */
+    font-style: italic;
+}
+
+.alarm {
+    color: #e74c3c; /* Alarm-Rot */
+    font-weight: bold;
+    font-size: large;
+    text-decoration: underline;
+}
+.alarm_hart {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: large;
+    text-decoration: underline;
+}
+
