@@ -9,9 +9,11 @@ Eine webbasierte BMI-Rechner-Anwendung mit lokalem Messverlauf, gebaut mit Pytho
 
 ---
 
-## 📸 Screenshot
+## 📸 Screenshots
 
-![BMI Rechner Screenshot](screenshot.png)
+![BMI Rechner Screenshot](Screenshot%202026-03-18%20190555.png)
+![BMI Rechner Screenshot Adipositas](Screenshot%202026-03-18%20190655.png)
+![BMI Rechner Screenshot Entwicklung](Screenshot%202026-03-18%20190956.png)
 
 ---
 
